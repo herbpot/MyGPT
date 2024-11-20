@@ -1,0 +1,11 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "MyGPT_chroma",
+            "database": "${workspaceFolder:MyGPT}/backend/data/chroma_db/chroma.sqlite3"
+        }
+    ]
+}

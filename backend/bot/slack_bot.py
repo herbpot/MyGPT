@@ -6,7 +6,7 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 # 환경 변수에서 토큰과 API URL 불러오기
 SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")  # Socket Mode 앱 토큰
-API_URL = "http://localhost:8000/query"
+API_URL = "http://localhost:32779/query"
 
 # Slack Bolt 앱 초기화
 app = App(token=SLACK_BOT_TOKEN)

@@ -1,5 +1,5 @@
-from backend.app.utils.data_loader import load_documents
-from backend.app.utils.embeddings import embed_query
+from app.utils.data_loader import load_documents
+from app.utils.embeddings import embed_query
 from langchain.vectorstores import VectorStore
 
 def main():

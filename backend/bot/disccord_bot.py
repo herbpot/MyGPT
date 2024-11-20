@@ -4,7 +4,7 @@ import os
 
 # Discord 봇 설정
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-API_URL = "http://localhost:8000/query"
+API_URL = "http://localhost:32779/query"
 
 class RAGDiscordBot(discord.Client):
     async def on_ready(self):
