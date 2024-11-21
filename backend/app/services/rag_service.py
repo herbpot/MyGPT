@@ -3,6 +3,7 @@ import os
 from app.utils.embeddings import embed_query
 from app.utils.data_loader import load_documents
 from app.services.conversation_manager import ConversationManager
+from app.services.internel_model import Model
 from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import CharacterTextSplitter
 from langchain import schema
@@ -10,6 +11,7 @@ from langchain import schema
 from app.models.rag_model import Document
 
 conversation_manager = ConversationManager()
+model = Model()
 
 # Chroma 벡터 스토어 생성 및 초기화
 def initialize_vector_store(documents):
@@ -56,7 +58,7 @@ def add_new_documents(documents: list[Document]):
         print(f"Error while adding documents: {e}")
         raise e
 
-def generate_rag_response(query: str):
+def generate_rag_response(query: str, internal_model=False):
     # 쿼리를 임베딩 벡터로 변환
     embedded_query = embed_query.embed_query(query)
     
@@ -84,10 +86,15 @@ def generate_rag_response(query: str):
     full_query = conversation_manager.get_conversation()
 
     # Ollama 모델 호출
-    response = ollama.chat(
-        model="bllossom",
-        messages=full_query
-    )
+    if internal_model:
+        if not model.isinit:
+            model.init()
+        response = model.chat(full_query)
+    else:
+        response = ollama.chat(
+            model="bllossom",
+            messages=full_query
+        )
 
     result_text = response['message']["content"]
 
