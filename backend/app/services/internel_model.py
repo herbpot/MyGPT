@@ -29,7 +29,7 @@ class Model:
                 BASE_MODEL,
                 device_map="cuda:1",  # 두 번째 GPU로 할당
                 # quantization_config=config,
-                token=os.environ['TOKEN_2']
+                token=os.environ['HUGGINGFACE_TOKEN']
             )
         self.tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, device_map="cuda:1", token=os.environ['TOKEN_2'])
         self.tokenizer.add_special_tokens({"pad_token": self.tokenizer.eos_token})  # pad_token 설정

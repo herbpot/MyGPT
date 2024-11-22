@@ -6,6 +6,8 @@ WORKDIR /
 
 EXPOSE 8000
 
+ENV OLLAMA_IP "ip to ollama"
+ENV HUGGINGFACE_TOKEN "huggingface token with meta permission"
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN apt-get update && apt-get install -y libmagic-dev
